@@ -1,6 +1,6 @@
 class GasStationsController < ApplicationController
   def index
-    @gas_stations = GasStations.all
+    @gas_stations = GasStation.where.not(latitude: nil, longitude: nil)
 
     @markers = @gas_stations.geocoded.map do |gas_station|
       {
