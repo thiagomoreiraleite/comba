@@ -5,7 +5,8 @@ class GasStationsController < ApplicationController
     @markers = @gas_stations.geocoded.map do |gas_station|
       {
         lat: gas_station.latitude,
-        lng: gas_station.longitude
+        lng: gas_station.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { gas_station: gas_station })
       }
     end
   end
