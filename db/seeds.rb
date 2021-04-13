@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts 'Cleaning database...'
 
-gas_stations.destroy_all
-fuel_types.destroy_all
+GasStation.destroy_all
+FuelType.destroy_all
 
 puts "creating users"
 
