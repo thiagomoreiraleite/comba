@@ -1,7 +1,8 @@
 class GasStationsController < ApplicationController
   skip_before_action :authenticate_user!
   def index
-    @gas_stations = GasStation.where.not(latitude: nil, longitude: nil)
+    # @gas_stations = GasStation.where.not(latitude: nil, longitude: nil)
+    @gas_stations = GasStation.all
 
     @markers = @gas_stations.geocoded.map do |gas_station|
       {
