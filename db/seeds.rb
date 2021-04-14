@@ -66,7 +66,7 @@ gs38 = GasStation.create!(name: 'GBM COMERCIO DE COMBUSTIVEIS E LUBRIFICANTES LT
 gs39 = GasStation.create!(name: 'MACUXI COMÉRCIO VAREJISTA DE COMBUSTÍVEIS LTDA.', address: 'AVENIDA PONTES VIEIRA, 1485, Fortaleza, Ceará, Brasil', brand: 'PETROBRAS')
 gs40 = GasStation.create!(name: 'MMA COMERCIO DE COMBUSTIVEIS E LUBRIFICANTES DERIVADOS DE PETROLEO LTDA', address: 'AVENIDA BARAO DE STUDART, 3350, Fortaleza, Ceará, Brasil', brand: 'IPIRANGA')
 gs41 = GasStation.create!(name: 'CAUIPE REVENDEDORA DE PETROLEO LTDA', address: 'AVENIDA VISCONDE DO RIO BRANCO, 3680, Fortaleza, Ceará, Brasil', brand: 'RAIZEN')
-gs42 = GasStation.create!(name: 'DISTRIBUIDORA CANAA DE COMBUSTIVEIS LTDA', address: 'AVENIDA ANTONIO SALES, 2880, Fortaleza, Ceará, Brasil', brand: 'IPIRANGA')
+gs42 = GasStation.create!(name: 'DISTRIBUIDORA CANAA DE COMBUSTIVEIS LTDA', address: '2880 AV. ANTONIO SALES, Fortaleza', brand: 'IPIRANGA')
 puts "#{GasStation.count} gas stations created."
 
 puts "Creating fuel types..."
