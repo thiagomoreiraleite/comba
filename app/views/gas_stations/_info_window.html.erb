@@ -1,2 +1,7 @@
-<h3><%= gas_station.name %></h2>
+<h1 class="info-header"><%= gas_station.name %></h1>
 <p><%= gas_station.address %></p>
+<ul>
+  <% gas_station.fuel_types.each do |type| %>
+    <li> <%= type.name %> <%= type.price %> </li>
+  <% end %>
+</ul>
