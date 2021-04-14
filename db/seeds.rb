@@ -12,16 +12,16 @@ GasStation.destroy_all
 FuelType.destroy_all
 
 puts "Creating users..."
-u1 = User.create(email: 'user1@comba.com', password: '12345896')
-u2 = User.create(email: 'user2@comba.com', password: '12345896')
-u3 = User.create(email: 'user3@comba.com', password: '12345896')
-u4 = User.create(email: 'user4@comba.com', password: '12345896')
-u5 = User.create(email: 'user5@comba.com', password: '12345896')
-u6 = User.create(email: 'user6@comba.com', password: '12345896')
-u7 = User.create(email: 'user7@comba.com', password: '12345896')
-u8 = User.create(email: 'user8@comba.com', password: '12345896')
-u9 = User.create(email: 'user9@comba.com', password: '12345896')
-u10 = User.create(email: 'user10@comba.com', password: '12345896')
+u1 = User.create!(email: 'user1@comba.com', password: '12345896')
+u2 = User.create!(email: 'user2@comba.com', password: '12345896')
+u3 = User.create!(email: 'user3@comba.com', password: '12345896')
+u4 = User.create!(email: 'user4@comba.com', password: '12345896')
+u5 = User.create!(email: 'user5@comba.com', password: '12345896')
+u6 = User.create!(email: 'user6@comba.com', password: '12345896')
+u7 = User.create!(email: 'user7@comba.com', password: '12345896')
+u8 = User.create!(email: 'user8@comba.com', password: '12345896')
+u9 = User.create!(email: 'user9@comba.com', password: '12345896')
+u10 = User.create!(email: 'user10@comba.com', password: '12345896')
 puts "#{User.count} users created."
 
 puts "Creating gas stations..."
@@ -72,7 +72,7 @@ puts "#{GasStation.count} gas stations created."
 puts "Creating fuel types..."
 gas_stations = GasStation.all
 gas_stations.each do |station|
-  FuelType.create([
+  FuelType.create!([
     { name: 'Diesel', price: 100, gas_station: station },
     { name: 'Diesel S10', price: 100, gas_station: station },
     { name: 'Gasoline', price: 100, gas_station: station },

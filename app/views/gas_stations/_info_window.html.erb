@@ -1,7 +1,10 @@
-<h1 class="info-header"><%= gas_station.name %></h1>
+<h1 class="info-header"><%= gas_station.name.split.map(&:capitalize).join(' ') %></h1>
 <p><%= gas_station.address %></p>
-<ul>
+<ul class="fuel-types-list">
   <% gas_station.fuel_types.each do |type| %>
-    <li> <%= type.name %> <%= type.price %> </li>
+    <div class="price-list">
+      <li id="name"> <%= type.name %>: </li>
+      <li id="price"> <%= number_with_precision(type.price, precision: 2) %> R$ </li>
+    </div>
   <% end %>
 </ul>
