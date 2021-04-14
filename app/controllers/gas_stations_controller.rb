@@ -1,4 +1,5 @@
 class GasStationsController < ApplicationController
+  skip_before_action :authenticate_user!
   def index
     @gas_stations = GasStation.where.not(latitude: nil, longitude: nil)
 
