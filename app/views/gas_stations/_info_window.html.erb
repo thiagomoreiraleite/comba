@@ -3,8 +3,8 @@
 <ul class="fuel-types-list">
   <% gas_station.fuel_types.order('name ASC').each do |type| %>
     <div class="price-list">
-      <li id="name"> <%= type.name %>: </li>
-      <li id="price"> <%= number_with_precision(type.price, precision: 2) %> R$ </li>
+      <li class="bold"> <%= type.name %>: </li>
+      <%= number_with_precision(type.price, precision: 2) %> R$ </li>
     </div>
   <% end %>
 </ul>
