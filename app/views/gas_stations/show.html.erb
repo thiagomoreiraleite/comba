@@ -1,0 +1,16 @@
+<h2> <%= @gas_station.name %> </h2>
+
+<ul>
+  <% @fuel_types.order('name ASC').each do |type| %>
+    <li>  <%= type.name %>:
+          <%= number_with_precision(type.price, precision: 2) %> R$
+          <%= link_to 'actualizar', edit_gas_station_fuel_type_path(@gas_station, type) %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Adicionar um tipo de combustível</h3>
+<%= render 'fuel_types/form' %>
+
+<h3>Actualizar a informação da sua posto de gasolina</h3>
+<%= render 'form' %>

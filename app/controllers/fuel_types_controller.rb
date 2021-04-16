@@ -1,6 +1,6 @@
 class FuelTypesController < ApplicationController
   before_action :set_fuel_type, only: [:edit, :update]
-  before_action :set_gas_station_id, only: [:new, :create]
+  before_action :set_gas_station_id, only: [:new, :create, :edit, :update]
 
   def new
     @fuel_type = FuelType.new
@@ -8,11 +8,11 @@ class FuelTypesController < ApplicationController
 
   def create
     @fuel_type = FuelType.new(fuel_type_params)
-
+    @fuel_type.gas_station = @gas_station
     if @fuel_type.save
-      redirect_to root_path
+      redirect_to gas_station_path(@gas_station)
     else
-      render :new
+      render 'gas_stations/show'
     end
   end
 
@@ -21,7 +21,7 @@ class FuelTypesController < ApplicationController
 
   def update
     @fuel_type.update(fuel_type_params)
-    redirect_to root_path
+    redirect_to gas_station_path(@gas_station)
   end
 
   private

@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root to: 'gas_stations#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :gas_stations, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    resources :fuel_types, only: [:create]
+    resources :fuel_types, only: [:new, :create, :edit, :update]
   end
 end
