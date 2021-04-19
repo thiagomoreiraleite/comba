@@ -1,0 +1,5 @@
+<%= simple_form_for [@gas_station, @fuel_type] do |f| %>
+  <%= f.input :name, label: 'tipo de gasolina', collection: FuelType::CATEGORIES %>
+  <%= f.input :price, label: 'preço (R$)' %>
+  <%= f.button :submit, 'submit', class: 'btn-flat' %>
+<% end %>

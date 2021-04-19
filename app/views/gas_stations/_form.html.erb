@@ -1,0 +1,6 @@
+<%= simple_form_for(@gas_station) do |f| %>
+  <%= f.input :name, label: 'nome' %>
+  <%= f.input :address, label: 'endereço' %>
+  <%= f.input :brand, label: 'marca' %>
+  <%= f.button :submit, 'submit', class: 'btn-flat' %>
+<% end %>

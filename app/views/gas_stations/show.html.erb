@@ -1,0 +1,25 @@
+<h2> <%= @gas_station.name %> </h2>
+
+<h4 id="fuel-header">Tipos de gasolina:</h4>
+<ul>
+  <% @fuel_types.order('name ASC').each do |type| %>
+  <div class="fuel-list">
+    <li class="bold"> <%= type.name %>: &nbsp; </li>
+    <li>  <%= number_with_precision(type.price, precision: 2) %> R$
+          <%= link_to edit_gas_station_fuel_type_path(@gas_station, type) do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+    </li>
+  </div>
+  <% end %>
+</ul>
+
+<div class="form">
+  <h4>Adicionar um tipo de gasolina:</h4>
+  <%= render 'fuel_types/form' %>
+</div>
+
+<div class="form">
+  <h4>Actualizar a informação da sua posto de gasolina:</h4>
+  <%= render 'form' %>
+</div>
