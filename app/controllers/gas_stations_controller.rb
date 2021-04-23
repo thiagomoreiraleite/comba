@@ -3,8 +3,13 @@ class GasStationsController < ApplicationController
   before_action :set_gas_station, only: [:show, :edit, :update]
 
   def index
+    # @user = {
+    #   lat: request.location.latitude,
+    #   lng: request.location.longitude,
+    #   iconSize: [45, 45],
+    #   image: helpers.asset_url('pin.png')
+    # }
     @gas_stations = GasStation.where.not(latitude: nil, longitude: nil)
-
     @markers = @gas_stations.geocoded.map do |gas_station|
       {
         lat: gas_station.latitude,

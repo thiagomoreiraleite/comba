@@ -1,6 +1,6 @@
 <h2> <%= @gas_station.name %> </h2>
 
-<h4 id="fuel-header">Tipos de gasolina:</h4>
+<h4 id="fuel-header">Tipos de combustível:</h4>
 <ul>
   <% @fuel_types.order('name ASC').each do |type| %>
   <div class="fuel-list">
@@ -15,11 +15,11 @@
 </ul>
 
 <div class="form">
-  <h4>Adicionar um tipo de gasolina:</h4>
+  <h4>Adicionar um tipo de combustível:</h4>
   <%= render 'fuel_types/form' %>
 </div>
 
 <div class="form">
-  <h4>Actualizar a informação da sua posto de gasolina:</h4>
+  <h4>Atualizar a informação deste posto:</h4>
   <%= render 'form' %>
 </div>

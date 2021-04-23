@@ -1,5 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
@@ -10,7 +11,7 @@ const initMapbox = () => {
     map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1000 });
   };
 
-  if (mapElement) { // only build a map if there's a div#map to inject into
+  if (mapElement) {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
@@ -19,12 +20,43 @@ const initMapbox = () => {
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
-      new mapboxgl.Marker()
+      const newMarker = new mapboxgl.Marker()
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(map);
+      const changeCursorStyle = (event) => {
+        event.currentTarget.style.cursor = 'pointer';
+      }
+      newMarker.getElement().addEventListener('mouseenter', (e) => changeCursorStyle(e) );
+    });
+    navigator.geolocation.getCurrentPosition((position) => {
+      const el = document.createElement('div');
+      el.className = 'marker';
+      el.style.backgroundImage = 'url("https://res.cloudinary.com/dkljkjqlg/image/upload/v1599595773/Ambulant%20Icons/kombi_Ambulant_th384q.png")';
+      el.style.backgroundSize = 'contain';
+      el.style.width = '40px';
+      el.style.height = '40px';
+      new mapboxgl.Marker(el)
+        .setLngLat([position.coords.longitude, position.coords.latitude])
+        .addTo(map);
+      map.flyTo({
+        center: [position.coords.longitude, position.coords.latitude],
+        essential: true,
+        zoom: 14,
+        duration: 0
+      })
     });
     fitMapToMarkers(map, markers);
+    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl }));
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      })
+    );
   }
 };
 
