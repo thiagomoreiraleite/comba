@@ -24,6 +24,7 @@ const initMapbox = () => {
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(map);
+      newMarker.getElement().dataset.markerId = marker.id;
       const changeCursorStyle = (event) => {
         event.currentTarget.style.cursor = 'pointer';
       }
@@ -59,5 +60,11 @@ const initMapbox = () => {
     );
   }
 };
+const toggleMarkerImage = (event) => {
+  // We select the card corresponding to the marker's id
+  const card = document.querySelector(`[data-flat-id="${event.currentTarget.dataset.markerId}"]`);
+  // Then we toggle the class "highlight github" to the card
+  card.classList.toggle('highlight');
+}
 
 export { initMapbox };
