@@ -14,7 +14,10 @@ class GasStationsController < ApplicationController
       {
         lat: gas_station.latitude,
         lng: gas_station.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { gas_station: gas_station })
+        infoWindow: render_to_string(partial: "info_window", locals: { gas_station: gas_station }),
+        name: gas_station.name.upcase,
+        address: gas_station.address.upcase,
+        brand: gas_station.brand.capitalize
       }
     end
   end
