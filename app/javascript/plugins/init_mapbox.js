@@ -18,13 +18,17 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/streets-v10'
     });
     const markers = JSON.parse(mapElement.dataset.markers);
+    const mapMarkers = []
     markers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
       const newMarker = new mapboxgl.Marker()
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(map);
+      mapMarkers.push(newMarker);
       newMarker.getElement().dataset.markerId = marker.id;
+      newMarker.getElement().addEventListener('mouseenter', (e) => toggleCardHighlighting(e) );
+      newMarker.getElement().addEventListener('mouseleave', (e) => exittoggleCardHighlighting(e) );
       const changeCursorStyle = (event) => {
         event.currentTarget.style.cursor = 'pointer';
       }
@@ -48,6 +52,7 @@ const initMapbox = () => {
       })
     });
     fitMapToMarkers(map, markers);
+    openInfoWindow(mapMarkers);
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl }));
     map.addControl(
@@ -60,10 +65,27 @@ const initMapbox = () => {
     );
   }
 };
-const toggleMarkerImage = (event) => {
-  // We select the card corresponding to the marker's id
-  const card = document.querySelector(`[data-flat-id="${event.currentTarget.dataset.markerId}"]`);
-  // Then we toggle the class "highlight github" to the card
+
+const openInfoWindow = (markers) => {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card, index) => {
+    card.addEventListener('mouseenter', () => {
+      markers[index].togglePopup();
+    });
+    card.addEventListener('mouseleave', () => {
+      markers[index].togglePopup();
+    });
+  });
+}
+const toggleCardHighlighting  = (event) => {
+  const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);
+  card.classList.toggle('highlight');
+  card.scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+const exittoggleCardHighlighting  = (event) => {
+  const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);
   card.classList.toggle('highlight');
 }
 

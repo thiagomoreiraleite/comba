@@ -1,12 +1,26 @@
-<div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-user="<%= @user.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
+<div class="map-el">
+  <div
+    id="map"
+    class='map pad2 mr-1'
+    data-markers="<%= @markers.to_json %>"
+    data-user="<%= @user.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+  <div class='sidebar ml-2 mb-2 pr-1'>
+    <div class='heading'>
+      <div>
+        <h1>Postos mais baratos</h1>
+        <p>Os melhores preços de gasolina próximo a você</p>
+      </div>
+    </div>
 
-<div>
-<% @gas_stations.each do |gas_station|%>
-  <div class="card"><%= gas_station.name %></div>
-<% end %>
+    <div id='listings' class='listings mb-4 ml-2'>
+      <div id="sidebar-background"> 
+        <div class="item"><a class="title">Gasolina</a></div>
+        <% @gas_stations.each do |gas_station|%>
+          <div class="card" data-gas_station-id="<%= gas_station.id %>"><%= gas_station.name %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

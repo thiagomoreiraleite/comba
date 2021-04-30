@@ -17,7 +17,8 @@ class GasStationsController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { gas_station: gas_station }),
         name: gas_station.name.upcase,
         address: gas_station.address.upcase,
-        brand: gas_station.brand.capitalize
+        brand: gas_station.brand.capitalize,
+        id: gas_station.id
       }
     end
   end
