@@ -19,6 +19,8 @@
 
 .highlight {
   color: yellow;
+  min-height: 50px;
+  background-color: $green;
 }
 
 .map-el {
@@ -130,6 +132,7 @@
   display: block;
   padding: 10px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .listings .item:last-child { border-bottom: none; }

@@ -15,10 +15,10 @@
     </div>
 
     <div id='listings' class='listings mb-4 ml-2'>
-      <div id="sidebar-background"> 
-        <div class="item"><a class="title">Gasolina</a></div>
+      <div> 
+        <div id="selected"></div>
         <% @gas_stations.each do |gas_station|%>
-          <div class="card" data-gas_station-id="<%= gas_station.id %>"><%= gas_station.name %></div>
+          <div class="item card" data-gas_station-id="<%= gas_station.id %>"><%= gas_station.name %> <p>a <%= gas_station.distance_to(@user_loc) %> KM de distância</p></div>
         <% end %>
       </div>
     </div>

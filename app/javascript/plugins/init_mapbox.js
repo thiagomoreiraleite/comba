@@ -5,11 +5,11 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
-  const fitMapToMarkers = (map, markers) => {
-    const bounds = new mapboxgl.LngLatBounds();
-    markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-    map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1000 });
-  };
+  // const fitMapToMarkers = (map, markers) => {
+  //   const bounds = new mapboxgl.LngLatBounds();
+  //   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
+  //   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1000 });
+  // };
 
   if (mapElement) {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -28,8 +28,8 @@ const initMapbox = () => {
       mapMarkers.push(newMarker);
       newMarker.getElement().dataset.markerId = marker.id;
       newMarker.getElement().addEventListener('click', (e) => toggleCardScroll(e) );
-      newMarker.getElement().addEventListener('mouseenter', (e) => toggleCardHighlighting(e) );
-      newMarker.getElement().addEventListener('mouseleave', (e) => exittoggleCardHighlighting(e) );
+      newMarker.getElement().addEventListener('mouseenter', (e) => toggleCardScroll(e) );
+      // newMarker.getElement().addEventListener('mouseleave', (e) => exittoggleCardHighlighting(e) );
       const changeCursorStyle = (event) => {
         event.currentTarget.style.cursor = 'pointer';
       }
@@ -48,11 +48,11 @@ const initMapbox = () => {
       map.flyTo({
         center: [position.coords.longitude, position.coords.latitude],
         essential: true,
-        zoom: 14,
+        zoom: 12,
         duration: 0
       })
     });
-    fitMapToMarkers(map, markers);
+    // fitMapToMarkers(map, markers);
     openInfoWindow(mapMarkers);
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl }));
@@ -79,21 +79,21 @@ const openInfoWindow = (markers) => {
   });
 }
 const toggleCardScroll  = (event) => {
-  const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);
-  card.scrollIntoView({
-    behavior: 'smooth'
-  });
+  const selected = document.getElementById("selected");
+  const currentMarker = event.currentTarget
+  const card = document.querySelector(`[data-gas_station-id="${currentMarker.dataset.markerId}"]`);
+  selected.innerHTML = `<div class="item card highlight">${card.innerHTML}</div>`;
 }
-const toggleCardHighlighting  = (event) => {
-  const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);
-  card.classList.toggle('highlight');
-  card.scrollIntoView({
-    behavior: 'smooth'
-  });
-}
-const exittoggleCardHighlighting  = (event) => {
-  const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);
-  card.classList.toggle('highlight');
-}
+// const toggleCardHighlighting  = (event) => {
+//   const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);
+//   card.classList.toggle('highlight');
+//   card.scrollIntoView({
+//     behavior: 'smooth'
+//   });
+// }
+// const exittoggleCardHighlighting  = (event) => {
+//   const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);
+//   card.classList.toggle('highlight');
+// }
 
 export { initMapbox };
