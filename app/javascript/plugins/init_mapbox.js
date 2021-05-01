@@ -27,6 +27,7 @@ const initMapbox = () => {
         .addTo(map);
       mapMarkers.push(newMarker);
       newMarker.getElement().dataset.markerId = marker.id;
+      newMarker.getElement().addEventListener('click', (e) => toggleCardScroll(e) );
       newMarker.getElement().addEventListener('mouseenter', (e) => toggleCardHighlighting(e) );
       newMarker.getElement().addEventListener('mouseleave', (e) => exittoggleCardHighlighting(e) );
       const changeCursorStyle = (event) => {
@@ -75,6 +76,12 @@ const openInfoWindow = (markers) => {
     card.addEventListener('mouseleave', () => {
       markers[index].togglePopup();
     });
+  });
+}
+const toggleCardScroll  = (event) => {
+  const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);
+  card.scrollIntoView({
+    behavior: 'smooth'
   });
 }
 const toggleCardHighlighting  = (event) => {
