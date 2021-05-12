@@ -1,20 +1,36 @@
 <div class="map-el">
   <div
     id="map"
-    class='map pad2 mr-1'
+    class='map'
     data-markers="<%= @markers.to_json %>"
     data-user="<%= @user.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-  <div class='sidebar ml-2 mb-2 pr-1'>
+  <div class='sidebar'>
     <div class='heading'>
-      <div>
-        <h1>Postos mais baratos</h1>
-        <p>Os melhores preços de gasolina próximo a você</p>
+      <div style="display: flex; justify-content: space-evenly; align-items:center;">
+        <div class="logo">
+        </div>
+        <div>
+          <div>
+            <h1>Encontre os melhores preços</h1>
+          </div>
+          <div style="display: flex; justify-content: space-evenly; align-items:center;">
+            <div style="margin-bottom:3px;">
+              <button class="button button-lista">Gasolina</button>
+            </div>
+            <div style="margin-bottom:3px;">
+              <button class="button button-lista">Diesel</button>
+            </div>
+            <div style="margin-bottom:3px;">
+              <button class="button button-lista">Etanol</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div id='listings' class='listings mb-4 ml-2'>
+    <div id='listings' class='listings'>
       <div> 
         <div id="selected"></div>
         <% @gas_stations.each do |gas_station|%>

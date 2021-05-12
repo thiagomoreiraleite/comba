@@ -28,12 +28,19 @@
   grid-template-columns: 1fr 2fr;
   grid-gap: 0px;
   box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  height: 100vh;
 }
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
   .map-el {
     grid-template-columns: 1fr;
+  }
+  .sidebar {
+    height: 40vh;
+  }
+  .map {
+    height: 60vh;
   }
 }
 
@@ -66,12 +73,12 @@
 }
 
 .sidebar {
-  height: 540px;
+  height: 100vh;
   top: 0;
   left: 0;
   overflow: hidden;
   border-right: 1px solid rgba(0, 0, 0, 0.25);
-  display: inline;
+  // display: inline;
   border-radius: 5px;
   position: relative;
   @media (max-width: 575px) {
@@ -81,7 +88,7 @@
 
 .map {
   border-radius: 5px;
-  height: 540px;
+  height: 100vh;
   @media (max-width: 575px) {
   border-radius: 0;
   height: 450px;
@@ -117,15 +124,6 @@
   overflow: scroll;
   padding-bottom: 10px;
   background-color: $light-gray;
-}
-
-#sidebar-background {
-  background-image: asset-url('sidebar4.gif');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: relative;
-  min-height: 250px;
 }
 
 .listings .item {
@@ -178,4 +176,11 @@
   cursor: pointer;
 }
 
+.logo {
+  background-image: linear-gradient(rgba(0,0,0,0) 0%,rgba(0,0,0,0) 90%),asset-url("comba_logo.png");
+  background-size: cover;
+  background-position: center;
+  width: 70px;
+  height: 70px;
+}
 
