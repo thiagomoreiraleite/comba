@@ -17,6 +17,21 @@ const initMapbox = () => {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10'
     });
+    const isTouchEvent = e => e.originalEvent && "touches" in e.originalEvent;
+    const isTwoFingerTouch = e => e.originalEvent.touches.length >= 2;
+  
+    map.on("dragstart", event => {
+      if ((/Android|webOS|iPhone|iPad/i.test(navigator.userAgent)) && (isTouchEvent(event) && !isTwoFingerTouch(event))) {
+         map.dragPan.disable();
+      }
+    });
+  
+    // Drag events not emited after dragPan disabled, so I use touch event here
+    map.on("touchstart", event => {
+        if ((/Android|webOS|iPhone|iPad/i.test(navigator.userAgent)) && (isTouchEvent(event) && isTwoFingerTouch(event))) {
+         map.dragPan.enable();
+      }
+    });
     const markers = JSON.parse(mapElement.dataset.markers);
     const mapMarkers = []
     markers.forEach((marker) => {

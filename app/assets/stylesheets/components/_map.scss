@@ -1,6 +1,6 @@
 .mapboxgl-popup {
   max-width: 200px;
-  opacity: 0.85;
+  opacity: 0.95;
 }
 
 .mapboxgl-popup-content {
@@ -18,9 +18,16 @@
 }
 
 .highlight {
-  color: yellow;
-  min-height: 50px;
-  background-color: $green;
+  color: black;
+  opacity: 0.9;
+  min-height: 60px;
+  background-color: #fff159d9;
+  -webkit-box-shadow: 0 8px 4px -4px #777;
+  -moz-box-shadow: 0 8px 4px -4px #777;
+  box-shadow: 0 8px 4px -4px #777;
+  font-weight: bold;
+  margin-top: 6px;
+  margin-bottom: 10px;
 }
 
 .map-el {
@@ -139,6 +146,22 @@
   display: block;
   color:  rgba(19,61,109,1);
   font-weight: 700;
+}
+
+.Diesel {
+  display: none;
+}
+
+.Etanol {
+  display: none;
+}
+
+.Gás {
+  display: none;
+}
+
+.Gasolina {
+  display: block;
 }
 
 ::-webkit-scrollbar {
