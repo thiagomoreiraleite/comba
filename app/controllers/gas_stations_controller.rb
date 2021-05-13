@@ -3,12 +3,7 @@ class GasStationsController < ApplicationController
   before_action :set_gas_station, only: [:show, :edit, :update]
 
   def index
-    # @user = {
-    #   lat: request.location.latitude,
-    #   lng: request.location.longitude,
-    #   iconSize: [45, 45],
-    #   image: helpers.asset_url('pin.png')
-    # }
+    @user_loc = request.location
     @gas_stations = GasStation.where.not(latitude: nil, longitude: nil)
     @markers = @gas_stations.geocoded.map do |gas_station|
       {
@@ -17,7 +12,9 @@ class GasStationsController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { gas_station: gas_station }),
         name: gas_station.name.upcase,
         address: gas_station.address.upcase,
-        brand: gas_station.brand.capitalize
+        brand: gas_station.brand.capitalize,
+        id: gas_station.id,
+        dist: gas_station.distance_to(current_user)
       }
     end
   end
@@ -57,4 +54,12 @@ class GasStationsController < ApplicationController
   def gas_station_params
     params.require(:gas_station).permit(:name, :address, :brand)
   end
+
+  # def set_user
+  #   @user = User.find(params[:id])
+  # end
+
+  # def user_params
+  #   params.require(:user).permit(:email)
+  # end
 end

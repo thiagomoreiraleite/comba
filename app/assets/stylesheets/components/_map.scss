@@ -1,5 +1,6 @@
 .mapboxgl-popup {
   max-width: 200px;
+  opacity: 0.95;
 }
 
 .mapboxgl-popup-content {
@@ -15,3 +16,194 @@
   display: flex;
   justify-content: space-between;
 }
+
+.highlight {
+  color: black;
+  opacity: 0.9;
+  min-height: 60px;
+  background-color: #fff159d9;
+  -webkit-box-shadow: 0 8px 4px -4px #777;
+  -moz-box-shadow: 0 8px 4px -4px #777;
+  box-shadow: 0 8px 4px -4px #777;
+  font-weight: bold;
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+
+.map-el {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 0px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  height: 100vh;
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .map-el {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    height: 40vh;
+  }
+  .map {
+    height: 60vh;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .map-el {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .map-el {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .map-el {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .map-el {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.sidebar {
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+  // display: inline;
+  border-radius: 5px;
+  position: relative;
+  @media (max-width: 575px) {
+    border-radius: 0;
+  }
+}
+
+.map {
+  border-radius: 5px;
+  height: 100vh;
+  @media (max-width: 575px) {
+  border-radius: 0;
+  height: 450px;
+  }
+}
+
+.heading {
+  background: rgba(45,75,114,0.88);
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  color: #e6e6e6;
+  position: relative;
+  h1 {
+    font-size: 25px;
+    font-family: $body-font;
+    font-weight: bold;
+  }
+  p {
+    font-size: 13px;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .heading h1 {font-size: 16px;}
+  .heading p {font-size: 12px;}
+  .listings {font-size: 13px;}
+  .listings item {padding: 5px;}
+}
+
+.listings {
+  height: 100%;
+  overflow: scroll;
+  padding-bottom: 10px;
+  background-color: $light-gray;
+}
+
+.listings .item {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.listings .item:last-child { border-bottom: none; }
+
+.listings .item .title {
+  display: block;
+  color:  rgba(19,61,109,1);
+  font-weight: 700;
+}
+
+.Diesel {
+  display: none;
+}
+
+.Etanol {
+  display: none;
+}
+
+.Gás {
+  display: none;
+}
+
+.Gasolina {
+  display: block;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-left: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(45,75,114,1);
+  border-radius: 0;
+}
+
+.clearfix { display: block; }
+
+.clearfix::after {
+  content: '.';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.marker {
+  background-image: url('pin8.png');
+  background-size: cover;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.logo {
+  background-image: linear-gradient(rgba(0,0,0,0) 0%,rgba(0,0,0,0) 90%),asset-url("comba_logo.png");
+  background-size: cover;
+  background-position: center;
+  width: 70px;
+  height: 70px;
+}
+

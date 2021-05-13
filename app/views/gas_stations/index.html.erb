@@ -1,12 +1,48 @@
-<div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-user="<%= @user.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
+<div class="map-el">
+  <div
+    id="map"
+    class='map'
+    data-markers="<%= @markers.to_json %>"
+    data-user="<%= @user.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+  <div class='sidebar'>
+    <div class='heading'>
+      <div style="display: flex; justify-content: space-around; align-items:center;">
+        <div class="logo">
+        </div>
+        <div>
+          <div>
+            <h1>Encontre os melhores preços</h1>
+          </div>
+          <div style="display: flex; justify-content: space-evenly; align-items:center;">
+            <div style="margin-bottom:3px;">
+              <button id="btn-gasolina" class="button button-lista picked">Gasolina</button>
+            </div>
+            <div style="margin-bottom:3px;">
+              <button id="btn-diesel" class="button button-lista">Diesel</button>
+            </div>
+            <div style="margin-bottom:3px;">
+              <button id="btn-etanol" class="button button-lista">Etanol</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div>
-<% @gas_stations.each do |gas_station|%>
-  <div class="card"><%= gas_station.name %></div>
-<% end %>
+    <div id='listings' class='listings'>
+      <div> 
+        <div id="selected"></div>
+        <% @gas_stations.each do |gas_station|%>
+          <div class="item card" data-gas_station-id="<%= gas_station.id %>"><%= gas_station.name %> <p>a <%= gas_station.distance_to(@user_loc) %> KM de distância</p>
+            <div style="display: flex; justify-content: space-evenly; align-items:center; flex-wrap: wrap;">
+              <% gas_station.fuel_types.each do |fuel| %>
+                <div class="fuel <%= fuel.name %>"><%= fuel.name %> - R$<%= fuel.price %></div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

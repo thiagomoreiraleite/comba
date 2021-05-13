@@ -17,14 +17,34 @@ const initMapbox = () => {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10'
     });
+    const isTouchEvent = e => e.originalEvent && "touches" in e.originalEvent;
+    const isTwoFingerTouch = e => e.originalEvent.touches.length >= 2;
+  
+    map.on("dragstart", event => {
+      if ((/Android|webOS|iPhone|iPad/i.test(navigator.userAgent)) && (isTouchEvent(event) && !isTwoFingerTouch(event))) {
+         map.dragPan.disable();
+      }
+    });
+  
+    // Drag events not emited after dragPan disabled, so I use touch event here
+    map.on("touchstart", event => {
+        if ((/Android|webOS|iPhone|iPad/i.test(navigator.userAgent)) && (isTouchEvent(event) && isTwoFingerTouch(event))) {
+         map.dragPan.enable();
+      }
+    });
     const markers = JSON.parse(mapElement.dataset.markers);
+    const mapMarkers = []
     markers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
       const newMarker = new mapboxgl.Marker()
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(map);
+      mapMarkers.push(newMarker);
       newMarker.getElement().dataset.markerId = marker.id;
+      newMarker.getElement().addEventListener('click', (e) => toggleCardScroll(e) );
+      newMarker.getElement().addEventListener('mouseenter', (e) => toggleCardScroll(e) );
+      // newMarker.getElement().addEventListener('mouseleave', (e) => exittoggleCardHighlighting(e) );
       const changeCursorStyle = (event) => {
         event.currentTarget.style.cursor = 'pointer';
       }
@@ -40,14 +60,15 @@ const initMapbox = () => {
       new mapboxgl.Marker(el)
         .setLngLat([position.coords.longitude, position.coords.latitude])
         .addTo(map);
-      map.flyTo({
-        center: [position.coords.longitude, position.coords.latitude],
-        essential: true,
-        zoom: 14,
-        duration: 0
-      })
+      // map.flyTo({
+      //   center: [position.coords.longitude, position.coords.latitude],
+      //   essential: true,
+      //   zoom: 12,
+      //   duration: 0
+      // })
     });
     fitMapToMarkers(map, markers);
+    openInfoWindow(mapMarkers);
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl }));
     map.addControl(
@@ -60,11 +81,34 @@ const initMapbox = () => {
     );
   }
 };
-const toggleMarkerImage = (event) => {
-  // We select the card corresponding to the marker's id
-  const card = document.querySelector(`[data-flat-id="${event.currentTarget.dataset.markerId}"]`);
-  // Then we toggle the class "highlight github" to the card
-  card.classList.toggle('highlight');
+
+const openInfoWindow = (markers) => {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card, index) => {
+    card.addEventListener('mouseenter', () => {
+      markers[index].togglePopup();
+    });
+    card.addEventListener('mouseleave', () => {
+      markers[index].togglePopup();
+    });
+  });
 }
+const toggleCardScroll  = (event) => {
+  const selected = document.getElementById("selected");
+  const currentMarker = event.currentTarget
+  const card = document.querySelector(`[data-gas_station-id="${currentMarker.dataset.markerId}"]`);
+  selected.innerHTML = `<div class="item card highlight">${card.innerHTML}</div>`;
+}
+// const toggleCardHighlighting  = (event) => {
+//   const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);
+//   card.classList.toggle('highlight');
+//   card.scrollIntoView({
+//     behavior: 'smooth'
+//   });
+// }
+// const exittoggleCardHighlighting  = (event) => {
+//   const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);
+//   card.classList.toggle('highlight');
+// }
 
 export { initMapbox };
