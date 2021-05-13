@@ -3,7 +3,13 @@ class GasStationsController < ApplicationController
   before_action :set_gas_station, only: [:show, :edit, :update]
 
   def index
-    @user_loc = request.location
+    # @user_loc = request.location
+    client_ip = request.remote_ip
+    # If testing from local host, ip will set to a known London ip
+    if client_ip == "::1"
+      client_ip = "Fortaleza, Ceara"
+    end
+    @user_loc = Geocoder.search(client_ip).first.coordinates
     @gas_stations = GasStation.where.not(latitude: nil, longitude: nil)
     @markers = @gas_stations.geocoded.map do |gas_station|
       {
