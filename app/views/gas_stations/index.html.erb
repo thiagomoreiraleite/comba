@@ -31,13 +31,43 @@
     </div>
 
     <div id='listings' class='listings'>
-      <div> 
-        <div id="selected"></div>
+      <div id="list-gasolina"> 
+        <div id="selected-gasolina"></div>
         <% @gas_stations.each do |gas_station|%>
-          <div class="item card" data-gas_station-id="<%= gas_station.id %>"><%= gas_station.name %> <p>a <%= gas_station.distance_to(@user_loc).round(2) %> KM de distância</p>
+          <div class="item card card-gasolina" data-gas_station_gasolina-id="<%= gas_station.id %>"> <div class="title"> <%= gas_station.name %></div> <p>a <%= gas_station.distance_to(@user_loc).round(2) %> KM de distância</p>
             <div style="display: flex; justify-content: space-evenly; align-items:center; flex-wrap: wrap;">
               <% gas_station.fuel_types.each do |fuel| %>
-                <div class="fuel <%= fuel.name %>"><%= fuel.name %> - R$<%= fuel.price %></div>
+                <%if fuel == "Gasolina"||"Gasolina Aditivada"%>
+                  <div class="fuel <%= fuel.name %>"><%= fuel.name %> - R$<%= fuel.price %></div>
+                <%end%
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div id="list-diesel">
+        <div id="selected-diesel"></div>
+        <% @gas_stations.each do |gas_station|%>
+          <div class="item card card-diesel" data-gas_station_diesel-id="<%= gas_station.id %>"> <div class="title"> <%= gas_station.name %></div> <p>a <%= gas_station.distance_to(@user_loc).round(2) %> KM de distância</p>
+            <div style="display: flex; justify-content: space-evenly; align-items:center; flex-wrap: wrap;">
+              <% gas_station.fuel_types.each do |fuel| %>
+                <%if fuel == "Diesel"||"Diesel S10"%>
+                  <div class="fuel <%= fuel.name %>"><%= fuel.name %> - R$<%= fuel.price %></div>
+                <%end%>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div id="list-etanol">
+        <div id="selected-etanol"></div>
+        <% @gas_stations.each do |gas_station|%>
+          <div class="item card card-etanol" data-gas_station_etanol-id="<%= gas_station.id %>"> <div class="title"> <%= gas_station.name %></div> <p>a <%= gas_station.distance_to(@user_loc).round(2) %> KM de distância</p>
+            <div style="display: flex; justify-content: space-evenly; align-items:center; flex-wrap: wrap;">
+              <% gas_station.fuel_types.each do |fuel| %>
+                <%if fuel == "Etanol"%>
+                  <div class="fuel <%= fuel.name %>"><%= fuel.name %> - R$<%= fuel.price %></div>
+                <%end%
               <% end %>
             </div>
           </div>

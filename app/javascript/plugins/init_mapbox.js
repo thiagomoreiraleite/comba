@@ -83,8 +83,26 @@ const initMapbox = () => {
 };
 
 const openInfoWindow = (markers) => {
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card, index) => {
+  const cardsGasolina = document.querySelectorAll('.card-gasolina');
+  const cardsDiesel = document.querySelectorAll('.card-diesel');
+  const cardsEtanol = document.querySelectorAll('.card-etanol');
+  cardsGasolina.forEach((card, index) => {
+    card.addEventListener('mouseenter', () => {
+      markers[index].togglePopup();
+    });
+    card.addEventListener('mouseleave', () => {
+      markers[index].togglePopup();
+    });
+  });
+  cardsDiesel.forEach((card, index) => {
+    card.addEventListener('mouseenter', () => {
+      markers[index].togglePopup();
+    });
+    card.addEventListener('mouseleave', () => {
+      markers[index].togglePopup();
+    });
+  });
+  cardsEtanol.forEach((card, index) => {
     card.addEventListener('mouseenter', () => {
       markers[index].togglePopup();
     });
@@ -94,10 +112,16 @@ const openInfoWindow = (markers) => {
   });
 }
 const toggleCardScroll  = (event) => {
-  const selected = document.getElementById("selected");
+  const selectedGasolina = document.getElementById("selected-gasolina");
+  const selectedDiesel = document.getElementById("selected-diesel");
+  const selectedEtanol = document.getElementById("selected-etanol");
   const currentMarker = event.currentTarget
-  const card = document.querySelector(`[data-gas_station-id="${currentMarker.dataset.markerId}"]`);
-  selected.innerHTML = `<div class="item card highlight">${card.innerHTML}</div>`;
+  const cardGasolina = document.querySelector(`[data-gas_station_gasolina-id="${currentMarker.dataset.markerId}"]`);
+  const cardDiesel = document.querySelector(`[data-gas_station_diesel-id="${currentMarker.dataset.markerId}"]`);
+  const cardEtanol = document.querySelector(`[data-gas_station_etanol-id="${currentMarker.dataset.markerId}"]`);
+  selectedGasolina.innerHTML = `<div class="item card card-gasolina highlight">${cardGasolina.innerHTML}</div>`;
+  selectedDiesel.innerHTML = `<div class="item card card-diesel highlight">${cardDiesel.innerHTML}</div>`;
+  selectedEtanol.innerHTML = `<div class="item card card-etanol highlight">${cardEtanol.innerHTML}</div>`;
 }
 // const toggleCardHighlighting  = (event) => {
 //   const card = document.querySelector(`[data-gas_station-id="${event.currentTarget.dataset.markerId}"]`);

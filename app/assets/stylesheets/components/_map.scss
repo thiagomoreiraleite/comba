@@ -90,6 +90,7 @@
   position: relative;
   @media (max-width: 575px) {
     border-radius: 0;
+    height: 60vh;
   }
 }
 
@@ -98,12 +99,12 @@
   height: 100vh;
   @media (max-width: 575px) {
   border-radius: 0;
-  height: 450px;
+  height: 35vh;
   }
 }
 
 .heading {
-  background: rgba(45,75,114,0.88);
+  background: #313676;
   border-bottom: 1px solid #eee;
   padding: 10px;
   color: #e6e6e6;
@@ -138,13 +139,18 @@
   padding: 10px;
   text-decoration: none;
   cursor: pointer;
+  p {
+    color: #53c0eb;
+    font-size: 12px;
+    font-weight: bold;
+  }
 }
 
 .listings .item:last-child { border-bottom: none; }
 
 .listings .item .title {
   display: block;
-  color:  rgba(19,61,109,1);
+  color:  #313676;
   font-weight: 700;
 }
 
@@ -164,6 +170,18 @@
   display: block;
 }
 
+#list-diesel {
+  display: none;
+}
+
+#list-etanol {
+  display: none;
+}
+
+#list-gasolina {
+  display: block;
+}
+
 ::-webkit-scrollbar {
   width: 3px;
   height: 3px;
@@ -176,7 +194,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(45,75,114,1);
+  background: #313676;
   border-radius: 0;
 }
 

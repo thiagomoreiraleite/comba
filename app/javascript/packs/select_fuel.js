@@ -1,7 +1,8 @@
 const selectFuel = () =>{
       const btnGasolina = document.getElementById("btn-gasolina");
-      const Gasolina = document.querySelectorAll(".Gasolina");
-      const GasolinaAditivada = document.querySelectorAll(".Gasolina Aditivada");
+    //   const Gasolina = document.querySelectorAll(".Gasolina");
+    //   const GasolinaAditivada = document.querySelectorAll(".Gasolina Aditivada");
+    const listGasolina = document.getElementById("list-gasolina");
     
       const btnDiesel = document.getElementById("btn-diesel");
       const Diesel = document.querySelectorAll(".Diesel");
@@ -11,19 +12,19 @@ const selectFuel = () =>{
       const btnEtanol = document.getElementById("btn-etanol");
       const Etanol = document.querySelectorAll(".Etanol");
       const fuel = document.querySelectorAll(".fuel");
-      const btn = document.querySelectorAll(".button-lista");
     
       var i;
       btnGasolina.onclick = function() {
         for (i = 0; i < fuel.length; i++) {
             fuel[i].style.display = "none";
         }
-        for (i = 0; i < Gasolina.length; i++) {
-            Gasolina[i].style.display = "block";
-        }
-        for (i = 0; i < GasolinaAditivada.length; i++) {
-            GasolinaAditivada[i].style.display = "block";
-        }
+        // for (i = 0; i < Gasolina.length; i++) {
+        //     Gasolina[i].style.display = "block";
+        // }
+        // for (i = 0; i < GasolinaAditivada.length; i++) {
+        //     GasolinaAditivada[i].style.display = "block";
+        // }
+        listGasolina.style.display = "block";
         btnDiesel.classList.remove("picked");
         btnEtanol.classList.remove("picked");
         btnGasolina.classList.add("picked");
