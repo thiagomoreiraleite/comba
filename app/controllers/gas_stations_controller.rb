@@ -9,7 +9,9 @@ class GasStationsController < ApplicationController
     end
     @user_loc = Geocoder.search(client_ip).first.coordinates
     @gas_stations = GasStation.where.not(latitude: nil, longitude: nil)
-    # @gasolina_stations = gas_stations.order("gas_stations.fuel_types ASC")
+    @gasolina_stations = @gas_stations.includes(:fuel_types).where(fuel_types: { name: "Gasolina" }).or(@gas_stations.includes(:fuel_types).where(fuel_types: { name: "Gasolina Aditivada" })).order("fuel_types.price ASC")
+    @diesel_stations = @gas_stations.includes(:fuel_types).where(fuel_types: { name: "Diesel" }).or(@gas_stations.includes(:fuel_types).where(fuel_types: { name: "Diesel S10" })).order("fuel_types.price ASC")
+    @etanol_stations = @gas_stations.includes(:fuel_types).where(fuel_types: { name: "Etanol" }).order("fuel_types.price ASC")
     @markers = @gas_stations.geocoded.map do |gas_station|
       {
         lat: gas_station.latitude,
