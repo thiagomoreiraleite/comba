@@ -20,7 +20,8 @@ class GasStationsController < ApplicationController
         name: gas_station.name.upcase,
         address: gas_station.address.upcase,
         brand: gas_station.brand.capitalize,
-        id: gas_station.id
+        id: gas_station.id,
+        dist: gas_station.distance_to(current_user)
       }
     end
   end
