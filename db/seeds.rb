@@ -82,3 +82,15 @@ gas_stations.each do |station|
   ])
 end
 puts "#{FuelType.count} fuel types created."
+
+a = GasStation.second.fuel_types.first
+a.price = 80
+a.save
+
+b = GasStation.third.fuel_types.third
+b.price = 50
+b.save
+
+c = GasStation.fifth.fuel_types.fifth
+c.price = 30
+c.save
