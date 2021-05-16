@@ -3,15 +3,14 @@ class GasStationsController < ApplicationController
   before_action :set_gas_station, only: [:show, :edit, :update]
 
   def index
-    # @user_loc = request.location
     client_ip = request.remote_ip
-    # If testing from local host, ip will set to a known London ip
     if client_ip == "::1"
       client_ip = "Fortaleza, Ceara"
     end
-    lat = Geocoder.search(client_ip).first.latitude
-    lon = Geocoder.search(client_ip).first.longitude
-    @user_loc = [lat, lon]
+    @user_loc = Geocoder.search(client_ip).first.coordinates
+    if @user_loc == nil
+      @user_loc = "Fortaleza, Ceara"
+    end
     @gas_stations = GasStation.where.not(latitude: nil, longitude: nil)
     @gasolina_stations = @gas_stations.includes(:fuel_types).where(fuel_types: { name: "Gasolina" }).or(@gas_stations.includes(:fuel_types).where(fuel_types: { name: "Gasolina Aditivada" })).order("fuel_types.price ASC")
     @diesel_stations = @gas_stations.includes(:fuel_types).where(fuel_types: { name: "Diesel" }).or(@gas_stations.includes(:fuel_types).where(fuel_types: { name: "Diesel S10" })).order("fuel_types.price ASC")

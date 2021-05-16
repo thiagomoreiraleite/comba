@@ -34,7 +34,7 @@
       <div id="list-gasolina"> 
         <div id="selected-gasolina"></div>
         <% @gasolina_stations.each do |gas_station|%>
-          <div class="item card card-gasolina" data-gas_station_gasolina-id="<%= gas_station.id %>"> <div class="title"> <%= gas_station.name %></div> <p>a <%= gas_station.distance_to(@user_loc).round(2) %> KM de distância     <%= gas_station.address %></p>
+          <div class="item card card-gasolina" data-gas_station_gasolina-id="<%= gas_station.id %>"> <div class="title"> <%= gas_station.name %></div> <p>a <%= gas_station.distance_to(@user_loc).round(2) %> KM de distância</p>
             <div style="display: flex; justify-content: space-evenly; align-items:center; flex-wrap: wrap;">
               <% gas_station.fuel_types.each do |fuel| %>
                 <%if fuel.name == "Gasolina"||fuel.name == "Gasolina Aditivada"%>
