@@ -71,26 +71,17 @@ puts "#{GasStation.count} gas stations created."
 
 puts "Creating fuel types..."
 gas_stations = GasStation.all
+def range (min, max)
+  rand * (max-min) + min
+end
 gas_stations.each do |station|
   FuelType.create!([
-    { name: 'Diesel', price: 100, gas_station: station },
-    { name: 'Diesel S10', price: 100, gas_station: station },
-    { name: 'Gasolina', price: 100, gas_station: station },
-    { name: 'Gasolina Aditivada', price: 100, gas_station: station },
-    { name: 'Etanol', price: 100, gas_station: station },
+    { name: 'Diesel', price: range(4.24,4.50), gas_station: station },
+    { name: 'Diesel S10', price: range(4.55,4.65), gas_station: station },
+    { name: 'Gasolina', price: range(5.33,5.50), gas_station: station },
+    { name: 'Gasolina Aditivada', price: range(5.51,5.65), gas_station: station },
+    { name: 'Etanol', price: range(4.32,4.70), gas_station: station },
     { name: 'Gás', price: 100, gas_station: station },
   ])
 end
 puts "#{FuelType.count} fuel types created."
-
-a = GasStation.second.fuel_types.first
-a.price = 80
-a.save
-
-b = GasStation.third.fuel_types.third
-b.price = 50
-b.save
-
-c = GasStation.fifth.fuel_types.fifth
-c.price = 30
-c.save

@@ -38,7 +38,7 @@
             <div style="display: flex; justify-content: space-evenly; align-items:center; flex-wrap: wrap;">
               <% gas_station.fuel_types.each do |fuel| %>
                 <%if fuel.name == "Gasolina"||fuel.name == "Gasolina Aditivada"%>
-                  <div class="fuel"><%= fuel.name %> - R$<%= fuel.price %></div>
+                  <div class="fuel"><%= fuel.name %> - R$<%= number_with_precision(fuel.price, precision: 2) %></div>
                 <%end%>
               <% end %>
             </div>
@@ -52,7 +52,7 @@
             <div style="display: flex; justify-content: space-evenly; align-items:center; flex-wrap: wrap;">
               <% gas_station.fuel_types.each do |fuel| %>
                 <%if fuel.name == "Diesel"||fuel.name == "Diesel S10"%>
-                  <div class="fuel"><%= fuel.name %> - R$<%= fuel.price %></div>
+                  <div class="fuel"><%= fuel.name %> - R$<%= number_with_precision(fuel.price, precision: 2) %></div>
                 <%end%>
               <% end %>
             </div>
@@ -66,7 +66,7 @@
             <div style="display: flex; justify-content: space-evenly; align-items:center; flex-wrap: wrap;">
               <% gas_station.fuel_types.each do |fuel| %>
                 <%if fuel.name == "Etanol"%>
-                  <div class="fuel"><%= fuel.name %> - R$<%= fuel.price %></div>
+                  <div class="fuel"><%= fuel.name %> - R$<%= number_with_precision(fuel.price, precision: 2) %></div>
                 <%end%>
               <% end %>
             </div>

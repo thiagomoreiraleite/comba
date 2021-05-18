@@ -86,35 +86,45 @@ const openInfoWindow = (markers) => {
   const cardsGasolina = document.querySelectorAll('.card-gasolina');
   const cardsDiesel = document.querySelectorAll('.card-diesel');
   const cardsEtanol = document.querySelectorAll('.card-etanol');
-  cardsGasolina.forEach((card, index) => {
+  cardsGasolina.forEach((card) => {
     card.addEventListener('mouseenter', () => {
-      markers[index].togglePopup();
+      markers.find(marker => marker.getElement().dataset.markerId == card.getAttribute("data-gas_station_gasolina-id")).togglePopup();
     });
     card.addEventListener('mouseleave', () => {
-      markers[index].togglePopup();
+      markers.find(marker => marker.getElement().dataset.markerId == card.getAttribute("data-gas_station_gasolina-id")).togglePopup();
     });
   });
   cardsDiesel.forEach((card, index) => {
     card.addEventListener('mouseenter', () => {
-      markers[index].togglePopup();
+            markers.find(marker => marker.getElement().dataset.markerId == card.getAttribute("data-gas_station_diesel-id")).togglePopup();
     });
     card.addEventListener('mouseleave', () => {
-      markers[index].togglePopup();
+            markers.find(marker => marker.getElement().dataset.markerId == card.getAttribute("data-gas_station_diesel-id")).togglePopup();
     });
   });
   cardsEtanol.forEach((card, index) => {
     card.addEventListener('mouseenter', () => {
-      markers[index].togglePopup();
+            markers.find(marker => marker.getElement().dataset.markerId == card.getAttribute("data-gas_station_etanol-id")).togglePopup();
     });
     card.addEventListener('mouseleave', () => {
-      markers[index].togglePopup();
+            markers.find(marker => marker.getElement().dataset.markerId == card.getAttribute("data-gas_station_etanol-id")).togglePopup();
     });
   });
 }
+
 const toggleCardScroll  = (event) => {
   const selectedGasolina = document.getElementById("selected-gasolina");
   const selectedDiesel = document.getElementById("selected-diesel");
   const selectedEtanol = document.getElementById("selected-etanol");
+  selectedGasolina.scrollIntoView({
+    behavior: 'smooth'
+  });
+  selectedDiesel.scrollIntoView({
+    behavior: 'smooth'
+  });
+  selectedEtanol.scrollIntoView({
+    behavior: 'smooth'
+  });
   const currentMarker = event.currentTarget
   const cardGasolina = document.querySelector(`[data-gas_station_gasolina-id="${currentMarker.dataset.markerId}"]`);
   const cardDiesel = document.querySelector(`[data-gas_station_diesel-id="${currentMarker.dataset.markerId}"]`);
