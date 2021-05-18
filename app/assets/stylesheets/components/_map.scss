@@ -154,22 +154,6 @@
   font-weight: 700;
 }
 
-// .Diesel {
-//   display: none;
-// }
-
-// .Etanol {
-//   display: none;
-// }
-
-// .Gás {
-//   display: none;
-// }
-
-// .Gasolina {
-//   display: block;
-// }
-
 #list-diesel {
   display: none;
 }
@@ -182,6 +166,9 @@
   display: block;
 }
 
+.fuel {
+  font-weight: bold;
+}
 ::-webkit-scrollbar {
   width: 3px;
   height: 3px;

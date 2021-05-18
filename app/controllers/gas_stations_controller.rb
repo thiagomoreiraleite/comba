@@ -3,6 +3,9 @@ class GasStationsController < ApplicationController
   before_action :set_gas_station, only: [:show, :edit, :update]
 
   def index
+    @counter_gasolina = 0
+    @counter_diesel = 0
+    @counter_etanol = 0
     client_ip = request.remote_ip
     if client_ip == "::1"
       client_ip = "Fortaleza, Ceara"
