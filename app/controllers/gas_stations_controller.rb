@@ -6,11 +6,11 @@ class GasStationsController < ApplicationController
     @counter_gasolina = 0
     @counter_diesel = 0
     @counter_etanol = 0
-    client_ip = request.remote_ip
-    if client_ip == "::1"
-      client_ip = "Fortaleza, Ceara"
-    end
-    @user_loc = Geocoder.search(client_ip).first.coordinates
+    # client_ip = request.remote_ip
+    # if client_ip == "::1"
+    #   client_ip = "Fortaleza, Ceara"
+    # end
+    # @user_loc = Geocoder.search(client_ip).first.coordinates
     @gas_stations = GasStation.where.not(latitude: nil, longitude: nil)
     @gasolina_stations = @gas_stations.includes(:fuel_types).where(fuel_types: { name: "Gasolina" }).or(@gas_stations.includes(:fuel_types).where(fuel_types: { name: "Gasolina Aditivada" })).order("fuel_types.price ASC")
     @diesel_stations = @gas_stations.includes(:fuel_types).where(fuel_types: { name: "Diesel" }).or(@gas_stations.includes(:fuel_types).where(fuel_types: { name: "Diesel S10" })).order("fuel_types.price ASC")
