@@ -38,7 +38,7 @@ gem 'simple_form'
 gem 'geocoder'
 
 # Service Worker
-gem 'serviceworker-rails'
+# gem 'serviceworker-rails'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
