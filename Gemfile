@@ -37,6 +37,9 @@ gem 'simple_form'
 # Geocoding
 gem 'geocoder'
 
+# Service Worker
+gem 'serviceworker-rails'
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
