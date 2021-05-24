@@ -19,6 +19,9 @@ default: &default
   # Extract and emit a css file
   extract_css: false
 
+  #Service Worker
+  service_workers_entry_path: service_workers
+
   static_assets_extensions:
     - .jpg
     - .jpeg

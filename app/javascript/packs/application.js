@@ -29,12 +29,15 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { selectFuel } from './select_fuel';
+import { initMapbox } from '../plugins/init_mapbox';
+import { registerServiceWorker } from './service-worker-companion';
+import { install } from './install';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initMapbox();
   selectFuel();
+  registerServiceWorker();
+  install();
 });
-
-import { initMapbox } from '../plugins/init_mapbox';
