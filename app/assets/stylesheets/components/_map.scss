@@ -26,7 +26,6 @@
   -moz-box-shadow: 0 8px 4px -4px #777;
   box-shadow: 0 8px 4px -4px #777;
   font-weight: bold;
-  margin-top: 6px;
   margin-bottom: 10px;
 }
 
@@ -109,6 +108,7 @@
   padding: 10px;
   color: #e6e6e6;
   position: relative;
+  margin-bottom: 6px;
   h1 {
     font-size: 25px;
     font-family: $body-font;
@@ -117,6 +117,9 @@
   p {
     font-size: 13px;
     margin-bottom: 0;
+  }
+  h3 {
+    color:#fff159d9;
   }
 }
 
@@ -210,5 +213,6 @@
   background-position: center;
   width: 70px;
   height: 70px;
+  border-radius: 3px;
 }
 

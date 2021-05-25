@@ -21,7 +21,6 @@ button {
   // margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
-  min-width: 80px;
 }
 .button-lista {
   background-color: white; 
@@ -33,6 +32,7 @@ button {
   font-size: 13px;
   font-weight: bold;
   border-radius: 5px;
+  min-width: 80px;
 }
 
 .button-lista:hover {
@@ -43,4 +43,18 @@ button {
 .picked {
   background-color: #53C0EB;
   color: white;
+}
+
+.button-install {
+  background-color: #fff159; 
+  color: #313676; 
+  border: 2px solid black;
+  // position: absolute;
+  bottom: 2px;
+  left: 2px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 5px;
+  min-width: 180px;
+  letter-spacing: 2px;
 }
