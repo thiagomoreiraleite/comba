@@ -27,8 +27,8 @@ button {
   color: black; 
   border: 2px solid rgba(19,61,109,1);
   // position: absolute;
-  bottom: 2px;
-  left: 2px;
+  // bottom: 2px;
+  // left: 2px;
   font-size: 13px;
   font-weight: bold;
   border-radius: 3px;
@@ -46,15 +46,15 @@ button {
 }
 
 .button-install {
-  background-color: #fff159; 
-  color: #53C0EB; 
-  border: 1px solid #53C0EB;
-  // position: absolute;
-  bottom: 2px;
-  left: 2px;
+  background-color: #313676; 
+  color: #fff159; 
   font-size: 15px;
   font-weight: bold;
   border-radius: 3px;
-  min-width: 180px;
-  letter-spacing: 2px;
+  min-width: 150px;
+  height: 30px;
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: -15px;
+  right: 0;
 }

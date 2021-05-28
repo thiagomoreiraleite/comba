@@ -108,7 +108,7 @@
   padding: 10px;
   color: #e6e6e6;
   position: relative;
-  margin-bottom: 6px;
+  margin-bottom: 18px;
   h1 {
     font-size: 25px;
     font-family: $body-font;
@@ -117,6 +117,9 @@
   p {
     font-size: 13px;
     margin-bottom: 0;
+  }
+  .nome {
+    color: #fff159;
   }
 }
 
