@@ -37,49 +37,8 @@
   height: 100vh;
 }
 
-// Smallest device
-@media (min-width: 100px) and (max-width: 575px) {
-  .map-el {
-    grid-template-columns: 1fr;
-  }
-  .sidebar {
-    height: 50vh;
-  }
-  .map {
-    height: 40vh;
-  }
-}
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-  .map-el {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-  .map-el {
-    grid-template-columns: 2fr 3fr;
-  }
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-  .map-el {
-    grid-template-columns: 2fr 3fr;
-  }
-}
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  .map-el {
-    grid-template-columns: 1fr 2fr;
-  }
-}
-
 .sidebar {
-  height: 90vh;
+  height: 97vh;
   top: 0;
   left: 0;
   overflow: hidden;
@@ -89,16 +48,16 @@
   position: relative;
   @media (max-width: 575px) {
     border-radius: 0;
-    height: 60vh;
+    // height: 60vh;
   }
 }
 
 .map {
   border-radius: 5px;
-  height: 90vh;
+  height: 97vh;
   @media (max-width: 575px) {
   border-radius: 0;
-  height: 40vh;
+  // height: 40vh;
   }
 }
 
@@ -123,15 +82,8 @@
   }
 }
 
-@media (max-width: 575px) {
-  .heading h1 {font-size: 16px;}
-  .heading p {font-size: 12px;}
-  .listings {font-size: 13px;}
-  .listings item {padding: 5px;}
-}
-
 .listings {
-  height: 75%;
+  height: 65%;
   overflow: scroll;
   padding-bottom: 10px;
   background-color: $light-gray;
@@ -216,3 +168,53 @@
   border-radius: 3px;
 }
 
+// Smallest device
+@media (max-width: 575px) {
+  .map-el {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    height: 50vh;
+  }
+  .map {
+    height: 50vh;
+  }
+  .heading {
+    height: 32%;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .map-el {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .map-el {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .map-el {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .map-el {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+@media (max-width: 575px) {
+  .heading h1 {font-size: 16px;}
+  .heading p {font-size: 12px;}
+  .listings {font-size: 13px;}
+  .listings item {padding: 5px;}
+}
