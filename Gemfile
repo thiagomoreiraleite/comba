@@ -39,7 +39,7 @@ gem 'geocoder'
 
 # Service Worker
 # gem 'serviceworker-rails'
-gem 'webpacker-pwa'
+# gem 'webpacker-pwa'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

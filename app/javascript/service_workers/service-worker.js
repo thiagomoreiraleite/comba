@@ -8,6 +8,6 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
     console.log('Service Worker fetching.');
 });
-self.addEventListener('install', function(event) {
-    self.skipWaiting();
-});
+// self.addEventListener('install', function(event) {
+//     self.skipWaiting();
+// });
