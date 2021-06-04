@@ -33,5 +33,31 @@ const install = () =>{
             });
         });
     });
+    window.addEventListener('appinstalled', async function(e) {
+        addBtn.hidden = true;
+    });
+    // function isThisDeviceRunningiOS(){
+    //     if (['iPad Simulator', 'iPhone Simulator','iPod Simulator', 'iPad','iPhone','iPod'].includes(navigator.platform))
+    //      return true;
+    //     }
+    //     // iPad on iOS 13  
+    //     else if (navigator.userAgent.includes("Mac") && "ontouchend" in document)){
+    //       return true;
+    //     }   
+    //     else {
+    //       return false;
+    //     }
+    // }
+    const isIos = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test( userAgent );
+    }
+      // Detects if device is in standalone mode
+    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+      
+      // Checks if should display install popup notification:
+    if (isIos() && !isInStandaloneMode()) {
+        document.getElementById("ios-install").hidden = false;
+    }
 }
 export { install };

@@ -218,3 +218,26 @@
   .listings {font-size: 13px;}
   .listings item {padding: 5px;}
 }
+
+.ios-install {
+  position:relative;
+  background-color:rgba(235, 235, 235, 0.7);
+  height:50px !important;
+  width:90% !important;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+.ios-install:after {
+  content:'';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-top: solid 20px rgba(235, 235, 235, 0.7);
+  border-left: solid 20px transparent;
+  border-right: solid 20px transparent;
+}
